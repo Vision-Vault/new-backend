@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ category.title }}</h1>
+
+  <ul class="post-list">
+    {% for post in posts %}
+      <li class="post-item">
+        <h2 class="post-title">{{ post.title }}</h2>
+        <p class="post-description">{{ post.description }}</p>
+        <p class="post-meta">Status: {{ post.status }} | Created: {{ post.created_at }} | Funding Goal: {{ post.funding_goal }} JD</p>
+        <div class="post-actions">
+          <a href="{% url 'post_edit' post.pk %}" class="post-action-link">Edit</a>
+          <a href="{% url 'post_delete' post.pk %}" class="post-action-link">Delete</a>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

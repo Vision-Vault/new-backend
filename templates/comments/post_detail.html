@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  <div class="hero-body">
+      <div clss="container">
+          <section class="section">
+              <div class="column">
+                  <div class="column is-8 is-offset-2">
+                      <!-- comment form -->
+                      <form action="" method="post">
+                          {%  csrf_token %}
+                          <div class="field">
+                              <label for="{{ form.body.id_for_label }}">Add comment</label>
+                              <div class="control">
+                                  {{form.body}}
+                              </div>
+                          </div>
+                          <div>
+                              <button class="button is-success mt-4">
+                                  Submit
+                              </button>
+                          </div>
+                      </form>
+
+                      <!-- list of comments  -->
+                      {% for comment in post.all_comments.all%}
+
+                      <article class="media box mt-6">
+                          <div class="media-content">
+                              <strong>
+                                  {{ comment.user }}
+                              </strong>
+                              <small>
+                                  {{ comment.created_at |timesince }} ago
+                              </small>
+                              <div>
+                                  {{ comment.body }}
+                              </div>
+                          </div>
+                      </article>
+
+                      {% empty %}
+
+                      <article class="media box mt-6">
+                          <p>
+                              There is no comments
+                          </p>
+                      </article>
+
+                      {% endfor %}
+                  </div>
+
+          </section>
+      </div>
+
+  </div>
+
+</section>
+
+{% endblock content %}

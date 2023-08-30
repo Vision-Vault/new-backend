@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ user.username }}</h1>
+  <p>Email: {{ user.email }}</p>
+  <p>Role: {{ user.get_role_display }}</p>
+  <p>Bio: {{ user.bio }}</p>
+  <img src="{{ user.profile_picture.url }}" alt="{{ user.username }}'s Profile Picture">
+
+  {% if user.is_creator %}
+    <h2>Creator Information:</h2>
+    <p>Posts Created: {{ user.posts.count }}</p>
+    <p>Ideas Contributed: {{ user.contributions.count }}</p>
+  {% elif user.is_backer %}
+    <h2>Backer Information:</h2>
+    <p>Ideas Supported: {{ user.donations.count }}</p>
+    <p>Comments Made: {{ user.comments.count }}</p>
+  {% endif %}
+{% endblock %}
