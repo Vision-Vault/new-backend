@@ -7,7 +7,7 @@ from posts.models import Post
 from .permissions import IsOwnerOrReadOnly
 
 
-class CommentList(generics.ListCreateAPIView):
+class CommentList(generics.ListAPIView):
     serializer_class = CommentSerializer
 
     def get_queryset(self):
@@ -20,6 +20,10 @@ class CommentList(generics.ListCreateAPIView):
         queryset = self.get_queryset() 
         serializer = self.get_serializer(queryset, many=True) 
         return Response(serializer.data)
+    
+class CommentCreate(generics.CreateAPIView):
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()

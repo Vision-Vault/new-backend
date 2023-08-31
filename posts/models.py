@@ -24,7 +24,7 @@ class Post(models.Model):
 
 
     title = models.CharField(max_length=255, null=False, blank=False)
-    description = models.TextField(max_length=255, default="Add a description")
+    description = models.TextField(default="Add a description")
     image = models.ImageField(upload_to='uploads/project_images/', null=True, blank=True)
     video = models.FileField(upload_to='uploads/project_videos/', null=True, blank=True)
     funding_goal = models.DecimalField(max_digits=10, decimal_places=2, default=None, null=False)
