@@ -1,7 +1,7 @@
 from rest_framework import generics,status
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerAndUpdateFields
 from .models import Category, Post,Donation
 from .serializers import CategorySerializer, PostSerializer,DonationSerializer
 from rest_framework.response import Response
@@ -51,7 +51,7 @@ class PostList(generics.ListCreateAPIView):
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerAndUpdateFields]
 
 
 
