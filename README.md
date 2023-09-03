@@ -46,4 +46,14 @@ Post create user: "https://new-backend-alpha.vercel.app/api/v1/accounts/"
 Get user info: "https://new-backend-alpha.vercel.app/api/v1/accounts/[id for user]/"
 Put user: "https://new-backend-alpha.vercel.app/api/v1/accounts/[id for user]/"
 Delete user: "https://new-backend-alpha.vercel.app/api/v1/accounts/[id for user]/"
+
+
+For the Donations
+
+Post http://127.0.0.1:8000/api/v1/posts/project id/donate/
+{
+  "user": 1,
+  "amount":10500.500
+}
+
 ```
