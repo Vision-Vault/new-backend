@@ -54,3 +54,13 @@ class Rating(models.Model):
     class Meta:
         unique_together = ('post', 'user')
 
+
+
+class Donation(models.Model):
+    user = models.ForeignKey(CustomUser, related_name="donations", on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name="donations", on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, null=False)
+
+
+    def __str__(self):
+        return f"Donation by {self.user.username}: ${self.amount}"
