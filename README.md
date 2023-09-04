@@ -1,7 +1,9 @@
 # Husam Obidat Repo that I clone it
+
 `https://github.com/HusamObe/test-VV`
 
 # All Step
+
 `pip install -r requirements.txt`
 
 ```
@@ -49,6 +51,14 @@ Delete user: "https://new-backend-alpha.vercel.app/api/v1/accounts/[id for user]
 
 
 For the Donations
+
+Post http://127.0.0.1:8000/api/v1/posts/project id/donate/
+{
+  "user": 1,
+  "amount":10500.500
+}
+
+For the Rating
 
 Post http://127.0.0.1:8000/api/v1/posts/project id/donate/
 {
