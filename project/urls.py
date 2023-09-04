@@ -19,6 +19,7 @@ from rest_framework_simplejwt import views as jwt_views
 from .views import MyTokenObtainPairView
 from django.views.generic.base import TemplateView
 
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
@@ -29,6 +30,3 @@ urlpatterns = [
     path('api/v1/accounts/', include('accounts.urls')),
 ]
 
-
-# path('',include('posts.urls'))
-# path('account/', include('accounts.urls')),
