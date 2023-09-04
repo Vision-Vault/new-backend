@@ -17,6 +17,9 @@ class Comment(Shared):
     project=models.ForeignKey(Post,on_delete=models.CASCADE,related_name='all_comments')
     user=models.ForeignKey(CustomUser,related_name='comments',on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self) -> str:
         return self.user.username
 
@@ -27,3 +30,5 @@ class ChildComment(Shared):
     def __str__(self) -> str:
         return self.user.username
 
+    class Meta:
+        ordering = ['-created_at']

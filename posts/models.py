@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
-from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 from accounts.models import CustomUser
 
 
@@ -25,7 +25,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=255, null=False, blank=False)
     description = models.TextField(default="Add a description")
-    image = models.ImageField(upload_to='uploads/project_images/', null=True, blank=True)
+    image = CloudinaryField('PostImage',overwrite= True,format="jpg",null= True)
     video = models.FileField(upload_to='uploads/project_videos/', null=True, blank=True)
     funding_goal = models.DecimalField(max_digits=10, decimal_places=2, default=None, null=False)
     allowed_donors = models.PositiveIntegerField(default=3)
@@ -44,6 +44,8 @@ class Post(models.Model):
         if total_ratings is not None and total_users > 0:
             self.rating = total_ratings / total_users
             self.save()
+    class Meta:
+        ordering = ['-created_at']
 
 
 class Rating(models.Model):

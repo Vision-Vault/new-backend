@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import environ
+import cloudinary
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,9 +32,17 @@ env = environ.Env(
     DATABASE_PASSWORD=(str, ""),
     DATABASE_HOST=(str, ""),
     DATABASE_PORT=(int, 5432),
-    SECRET_KEY=(str,"")
+    SECRET_KEY=(str,""),
+    CLOUD_NAME = (str,""),
+    CLOUD_API_KEY = (str,""),
+    CLOUD_API_SECRET = (str,"")
+
 )
 
+cloudinary.config(cloud_name=env.str("CLOUD_NAME"),
+                  api_key=env.str("CLOUD_API_KEY"),
+                  api_secret=env.str("CLOUD_API_SECRET"),
+                  secure = False)
 
 environ.Env.read_env()
 
