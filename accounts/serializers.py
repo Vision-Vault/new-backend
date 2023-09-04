@@ -16,12 +16,15 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         password = validated_data.pop('password', None)
+        print("password:",password)
 
         user = CustomUser(**validated_data)
 
         if password:
             user.set_password(password)
+            print("userrr", user)
 
+        print("userrr", user)
         user.save()
         return user
 

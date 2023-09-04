@@ -5,8 +5,9 @@ from rest_framework.permissions import AllowAny
 
 class CustomUserList(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
+    print("queryset:",queryset)
     serializer_class = CustomUserSerializer
-    permission_classe = [AllowAny]
+    permission_class = [AllowAny]
 
 class CustomUserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = CustomUser.objects.all()
