@@ -49,7 +49,7 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
 
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.filter(status=Post.ACTIVE)
-    serializer_class = RatingSerializer
+    serializer_class = PostSerializer
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
