@@ -4,7 +4,7 @@ from cloudinary.models import CloudinaryField
 
 class CustomUser(AbstractUser):
     profile_picture = CloudinaryField('ProfileImage',overwrite= True,format="jpg",null= True)
-    bio = models.TextField()
+    bio = models.TextField(default='add your BIO here',null=True)
     email = models.EmailField(unique=True)
 
     def __str__(self):
