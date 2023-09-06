@@ -25,6 +25,8 @@ class CustomUserSerializer(serializers.ModelSerializer):
             print("userrr", user)
 
         print("userrr", user)
+        print("333333333333333",type(validated_data['profile_picture']))
+        print("1111111111111",validated_data['profile_picture'])
         user.save()
         return user
 
