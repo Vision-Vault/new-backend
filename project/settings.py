@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import environ
-import cloudinary
+import os
 
 
 
@@ -32,17 +32,10 @@ env = environ.Env(
     DATABASE_PASSWORD=(str, ""),
     DATABASE_HOST=(str, ""),
     DATABASE_PORT=(int, 5432),
-    SECRET_KEY=(str,""),
-    CLOUD_NAME = (str,""),
-    CLOUD_API_KEY = (str,""),
-    CLOUD_API_SECRET = (str,"")
+    SECRET_KEY=(str,"")
 
 )
 
-cloudinary.config(cloud_name=env.str("CLOUD_NAME"),
-                  api_key=env.str("CLOUD_API_KEY"),
-                  api_secret=env.str("CLOUD_API_SECRET"),
-                  secure = False)
 
 environ.Env.read_env()
 
@@ -209,5 +202,7 @@ LOGOUT_REDIRECT_URL = "home"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+MEDIA_ROOT= os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
-MEDIA_DIR= BASE_DIR / 'media/'
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880 

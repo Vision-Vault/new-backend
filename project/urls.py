@@ -18,6 +18,9 @@ from django.urls import include, path
 from rest_framework_simplejwt import views as jwt_views
 from .views import MyTokenObtainPairView
 from django.views.generic.base import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 urlpatterns = [
@@ -30,3 +33,4 @@ urlpatterns = [
     path('api/v1/accounts/', include('accounts.urls')),
 ]
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
