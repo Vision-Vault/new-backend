@@ -1,9 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
-from cloudinary.models import CloudinaryField
 from accounts.models import CustomUser
+from django.utils.translation import gettext_lazy as _
 
+
+def upload_to(instance, filename):
+    return 'posts/{filename}'.format(filename=filename)
 
 class Category(models.Model):
     title = models.CharField(max_length=255)
@@ -25,7 +28,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=255, null=False, blank=False)
     description = models.TextField(default="Add a description")
-    image = CloudinaryField('PostImage',overwrite= True,format="jpg",null= True)
+    image = models.ImageField(_("Image"), upload_to=upload_to, default='posts/default.jpg')
     video = models.FileField(upload_to='uploads/project_videos/', null=True, blank=True)
     funding_goal = models.DecimalField(max_digits=10, decimal_places=2, default=None, null=False)
     allowed_donors = models.PositiveIntegerField(default=3)
